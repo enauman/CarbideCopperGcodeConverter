@@ -1,6 +1,6 @@
 # CarbideCopperGcodeConverter
 Prepares Carbide Copper gcode for use with Carvey<br />
-<a href="http://copper.carbide3d.com/">Carbide Copper</a> has some limitations for use with Carvey. 1) Gcode output is contained in one file with toolchange codes, which Carvey can't do. 2) Given copper blank thickness of 1.58mm Z-depth is fixed at -0.2mm and can't be modified whereas I find that is too deep for Carvey and needs to be more like -0.05mm. Note: This software assumes gcode from Carbide Copper is generated in mm not inches!<br />
+<a href="http://copper.carbide3d.com/">Carbide Copper</a> has some limitations for use with Carvey. 1) Gcode output is contained in one file with toolchange codes, which Easel can't do. 2) Given copper blank thickness of 1.58mm Z-depth is fixed at -0.2mm and can't be modified whereas I find that is too deep for Carvey and needs to be more like -0.05mm. Note: This software assumes gcode from Carbide Copper is generated in mm not inches!<br />
 Run from terminal this software:
 1) opens downloaded 'undefined.nc' gcode file (must be in same folder) and copies all but toolchange codes into new text file
 2) copies initial settings gcode into 4 new files; isolation.gcode, rubout.gcode, drilling.cgode, cutout.gcode.
