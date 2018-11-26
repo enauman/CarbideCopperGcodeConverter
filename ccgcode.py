@@ -7,7 +7,7 @@ tools = ['Contour','Drilling','Rubout','Routing']
 def deleteToolchange():
 	exclude = "M06"
 
-	with open('undefined.nc') as filein, open('gcode.txt', 'w') as fileout:
+	with open('copper.nc') as filein, open('gcode.txt', 'w') as fileout:
 	    for line in filein:
 	        if exclude not in line:
 	            fileout.write(line)
