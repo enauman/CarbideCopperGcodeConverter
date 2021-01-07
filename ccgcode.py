@@ -6,11 +6,14 @@ tools = ['Contour','Drilling','Rubout','Routing']
 # a gcode file 
 def deleteToolchange():
 	exclude = "M06"
+	ex = "G01F200"
 
 	with open('copper.nc') as filein, open('gcode.txt', 'w') as fileout:
-	    for line in filein:
-	        if exclude not in line:
-	            fileout.write(line)
+		for line in filein:
+			if ex in line:
+				fileout.write(line[7:])
+			elif exclude not in line:
+				fileout.write(line)
 
 # copies initial state gcode into separate file for each toolpath
 def copyStates(gcode,splitGcode):
@@ -41,10 +44,10 @@ def copyGcode(gcode,splitGcode,tool):
 					if '(' in line or 'M30' in line: break
 					if oldZDepth1 in line:
 						if not zDepthFound:
-							print "Current Z-depth in your " + splitGcode +" file is set to " + oldZDepth1 + "."
-							changeZ = raw_input("Would you like to change it? (yes or no) ")
+							print ("Current Z-depth in your " + splitGcode +" file is set to " + oldZDepth1 + ".")
+							changeZ = input("Would you like to change it? (yes or no) ")
 							if changeZ == "yes":
-								newZ = raw_input("Type value including -. ")
+								newZ = input("Type value including -. ")
 								newZDepth = newZDepth + newZ
 							else:
 								newZDepth = oldZDepth1
@@ -52,10 +55,10 @@ def copyGcode(gcode,splitGcode,tool):
 						line= line.replace(oldZDepth1, newZDepth)
 					if oldZDepth2 in line:
 						if not zDepthFound:
-							print "Current Z-depth in your " + splitGcode +" file is set to " + oldZDepth2 + "."
-							changeZ = raw_input("Would you like to change it? (yes or no) ")
+							print ("Current Z-depth in your " + splitGcode +" file is set to " + oldZDepth2 + ".")
+							changeZ = input("Would you like to change it? (yes or no) ")
 							if changeZ == "yes":
-								newZ = raw_input("Type value including -. ")
+								newZ = input("Type value including -. ")
 								newZDepth = newZDepth + newZ
 							else:
 								newZDepth = oldZDepth2
